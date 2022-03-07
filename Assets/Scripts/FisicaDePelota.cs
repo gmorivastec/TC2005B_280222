@@ -10,6 +10,7 @@ public class FisicaDePelota : MonoBehaviour
     // vamos a obtenerlo internamente PERO
     // les pongo esto para el futuro
     [SerializeField]
+    private float fuerzaDeDisparo = 10;
     private Rigidbody rb;
     
     // Start is called before the first frame update
@@ -19,13 +20,27 @@ public class FisicaDePelota : MonoBehaviour
         // obtener referencia a un componente en el mismo gameobject
         // GetComponent en start o awake
         rb = GetComponent<Rigidbody>();
+        print(transform.up);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            rb.AddForce(new Vector3(0, 500, 0));
+            // nota 1 de addforce: el vector de fuerza está en 
+            // espacio de mundo
+
+            // 3 vectores que nos sirven para tomar en cuenta orientación local
+            // en espacio global
+            // * transform.up
+            // * transform.right
+            // * transform.forward
+
+            // vector está normalizado (tamaño 1)
+            // unit vector - vector unitario
+            // sirve para expresar dirección y sentido
+
+            rb.AddForce(transform.up * fuerzaDeDisparo, ForceMode.Impulse);
         }
     }
 }

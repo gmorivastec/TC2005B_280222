@@ -26,6 +26,7 @@ public class Personaje : MonoBehaviour
     public GameObject original;
     public Transform referenciaDePosicion;
 
+
     // CICLO DE VIDA! 
     // - existen métodos que se ejecutan en momentos específicos 
     // en la vida de un script
